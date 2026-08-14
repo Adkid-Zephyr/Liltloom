@@ -12,7 +12,7 @@ pnpm run check
 pnpm run pack:check
 ```
 
-For a real integration check, install the generated tarball into a fresh DeepSeek Harness Web profile and follow [`spec/manual-testing.md`](spec/manual-testing.md).
+For a core change, verify that `liltloom/core` remains host-neutral. For a DSH adapter change, install the generated tarball into a fresh DeepSeek Harness Web profile and follow [`spec/manual-testing.md`](spec/manual-testing.md).
 
 ## Pull requests
 
@@ -22,4 +22,4 @@ For a real integration check, install the generated tarball into a fresh DeepSee
 - Update the owning SDD document or decision record when changing a product contract.
 - Never add credentials, private conversation exports, or user writing samples to fixtures.
 
-DeepSeek Harness is in developer preview. Include the tested DSH version or commit when reporting compatibility problems.
+New host adapters are welcome when they preserve the obligations in [`spec/09-portable-core-and-adapters.md`](spec/09-portable-core-and-adapters.md). DeepSeek Harness is in developer preview; include the tested DSH version or commit when reporting an issue with that adapter.

@@ -54,7 +54,7 @@ class FailingLlm extends Service {
 }
 
 async function harness(overrides: Partial<Config> = {}) {
-  const root = await mkdtemp(join(tmpdir(), 'dsh-liltloom-'))
+  const root = await mkdtemp(join(tmpdir(), 'liltloom-'))
   roots.push(root)
   const ctx = new Context()
   contexts.push(ctx)
@@ -290,7 +290,7 @@ describe('DSH service integration', () => {
     await service.addPreference('避免模板化结尾。', 'default')
     await service.setSelfDescription('我重视直接、诚实和清晰的沟通。')
     const exported = service.exportData()
-    expect(exported.product).toBe('dsh-liltloom')
+    expect(exported.product).toBe('liltloom')
     await service.clearUserData()
     expect(service.query()).toEqual([])
     expect(service.getSelfDescription()).toBeUndefined()

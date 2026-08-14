@@ -10,7 +10,7 @@ From the DeepSeek Harness repository:
 
 ```sh
 export DSH_HOME=/tmp/liltloom-manual
-pnpm dsh plugin --profile web add /absolute/path/dsh-liltloom-0.1.0.tgz
+pnpm dsh plugin --profile web add /absolute/path/liltloom-0.2.0.tgz
 pnpm dsh plugin --profile web peers check
 pnpm dsh --profile web --port 0
 ```
@@ -72,7 +72,7 @@ Expected: previewing does not create a chat turn or activate the conversation.
 
 1. Add a test rule and save a short self-description under `高级`.
 2. Export JSON from `数据`.
-3. Verify the file is named `liltloom-YYYY-MM-DD.json` and contains `"product": "dsh-liltloom"`.
+3. Verify the file is named `liltloom-YYYY-MM-DD.json` and contains `"product": "liltloom"`.
 4. Keep this file as a backup.
 5. Import it in merge mode and verify no validation error occurs.
 

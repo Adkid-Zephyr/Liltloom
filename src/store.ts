@@ -1,11 +1,11 @@
-/** Typed persistence adapter over DSH storage-domain. */
+/** DSH persistence adapter over Liltloom's portable data model. */
 
 import { randomUUID } from 'node:crypto'
 import type { Context } from '@deepseek-ai/cordis'
 import type { Domain, KvTable } from '@deepseek-ai/dsh-storage-domain'
 import { fingerprint } from './features.js'
 import { deriveRules, inferredPreferenceId, materializeRule } from './compiler.js'
-import { styleMemoryDomainSpec } from './schemas.js'
+import { styleMemoryDomainSpec } from './dsh-domain.js'
 import type {
   ActivationSet,
   EvidenceAggregate,
@@ -405,7 +405,7 @@ export class StyleMemoryStore {
     const selfDescription = this.getSelfDescription()
     return {
       schemaVersion: 1,
-      product: 'dsh-liltloom',
+      product: 'liltloom',
       exportedAt: nowIso(),
       preferences: this.listPreferences(),
       exemplars: this.listExemplars(),

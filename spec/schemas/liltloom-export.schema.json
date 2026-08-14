@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dsh-liltloom.invalid/schemas/liltloom-export.schema.json",
+  "$id": "https://liltloom.invalid/schemas/liltloom-export.schema.json",
   "title": "Portable Liltloom Export",
   "type": "object",
   "additionalProperties": false,
   "required": ["schemaVersion", "product", "exportedAt", "preferences", "exemplars"],
   "properties": {
     "schemaVersion": { "const": 1 },
-    "product": { "enum": ["dsh-liltloom", "dsh-style-memory"] },
+    "product": { "enum": ["liltloom", "dsh-liltloom", "dsh-style-memory"] },
     "exportedAt": { "type": "string", "format": "date-time" },
     "preferences": { "type": "array", "maxItems": 100000, "items": { "$ref": "preference-atom.schema.json" } },
     "exemplars": { "type": "array", "maxItems": 200, "items": { "$ref": "style-exemplar.schema.json" } },

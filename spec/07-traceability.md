@@ -19,7 +19,8 @@ Status: MVP v1 complete
 | Native client control plane | `03`, `06`, `08` | `src/client/*`, `src/rpc.ts`, `src/rpc-contract.ts` | client/RPC/package tests; real browser verification |
 | Visual command and activation dock | `03`, `08` | command UI decorator and activation-only dock | production client build; real Web mount verification |
 | Liltloom brand and progressive disclosure | `DEC-006` | compact native UI, lazy exemplars, in-page consent | real browser visual/interaction verification |
+| Portable core and adapter boundary | `09`, `DEC-007` | `src/core.ts`, host-neutral schemas, `src/dsh-domain.ts` | core export/package tests |
 | Executable contracts | `spec/schemas` | Zod durable schemas + JSON Schema | strict Ajv test |
-| DSH composition/lifecycle | `08` | bundle patch, Service init/disposal | real dump/boot evidence; integration teardown |
+| DSH adapter composition/lifecycle | `08`, `09` | bundle patch, Service init/disposal | real dump/boot evidence; integration teardown |
 
 File paths in this matrix are repository-relative. `spec/verification.md` records the exact supported DSH target and release commands.

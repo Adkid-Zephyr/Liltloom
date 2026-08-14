@@ -7,7 +7,8 @@ Date: 2026-08-14 (Asia/Shanghai)
 - DeepSeek Harness source commit: `47f943859bef60e4160492346772ded9b24f765a`
 - Source package version: `0.1.0-rc.5`
 - Public packages used for standalone plugin development: `0.1.0-rc.6`
-- Plugin: `dsh-liltloom@0.1.0`
+- Product/package: `liltloom@0.2.0`
+- Maintained adapter under test: DeepSeek Harness Web
 - Node requirement: `^22.19.0 || >=24`
 
 The peer range intentionally supports DSH `>=0.1.0-rc.5 <0.2.0`. Host APIs are optional pnpm peers because DSH supplies and resolves them; Cordis service injection remains the runtime requirement.
@@ -18,17 +19,17 @@ The peer range intentionally supports DSH `>=0.1.0-rc.5 <0.2.0`. Host APIs are o
 
 - TypeScript strict typecheck;
 - 6 Vitest files;
-- 25 keyless tests;
+- 26 keyless tests, including direct loading of the host-neutral core export;
 - production TypeScript build.
 
 `pnpm pack --dry-run` passed and contained the compiled `lib`, bundle patch, README, MIT license, complete SDD, and all 11 JSON Schemas.
 
 ## Clean tarball installation
 
-The built `dsh-liltloom-0.1.0.tgz` was installed into a new temporary DSH Home and Web profile with:
+The built `liltloom-0.2.0.tgz` was installed into a new temporary DSH Home and Web profile with:
 
 ```sh
-DSH_HOME=<fresh-home> pnpm dsh plugin --profile web add /absolute/path/dsh-liltloom-0.1.0.tgz
+DSH_HOME=<fresh-home> pnpm dsh plugin --profile web add /absolute/path/liltloom-0.2.0.tgz
 ```
 
 Results:
@@ -36,7 +37,7 @@ Results:
 - clean exit;
 - no install peer warning;
 - `pnpm dsh plugin --profile web peers check`: `No peer dependency issues found`;
-- `pnpm dsh --profile web --dump-config` contained the `# == dsh-liltloom` layer and all v1 resource settings.
+- `pnpm dsh --profile web --dump-config` contained the `# == liltloom` layer, `id: liltloom`, `name: liltloom`, and all v1 resource settings.
 
 ## Real boot and storage
 
@@ -55,7 +56,7 @@ The process was then terminated intentionally with `SIGINT`; exit 130 is the exp
 
 ## Native client and browser verification
 
-A second clean tarball profile was booted on an OS-selected loopback port. The HTML boot catalog named `dsh-liltloom`, `/plugins/dsh-liltloom/client.js` returned HTTP 200, and the `/liltloom-rpc` channel returned a successful structured status response. Peer checking again reported no issues.
+A second clean tarball profile was booted on an OS-selected loopback port. The HTML boot catalog named `liltloom`, `/plugins/liltloom/client.js` returned HTTP 200, and the `/liltloom-rpc` channel returned a successful structured status response. Peer checking again reported no issues.
 
 The real DSH Web UI was exercised in the in-app browser:
 
@@ -67,7 +68,11 @@ The real DSH Web UI was exercised in the in-app browser:
 - the Data view kept clear disabled until the user enters `DELETE`;
 - a fresh page reported zero browser-console errors.
 
-The renamed package was independently installed into multiple fresh temporary profiles. `--dump-config` showed `id: liltloom` and `name: dsh-liltloom`; the boot catalog, client bundle, and `/liltloom-rpc/status/read` all succeeded. The legacy package artifact was not enabled alongside Liltloom because both intentionally share the durable `style_memory` domain.
+The portable-core package was independently installed into a fresh temporary profile. `--dump-config` showed `id: liltloom` and `name: liltloom`; the Web root and `/plugins/liltloom/client.js` both returned HTTP 200. The legacy adapter-specific package artifact was not enabled alongside Liltloom because both intentionally share the durable `style_memory` domain.
+
+## Portable core boundary
+
+The published package contains `lib/core.js` and `lib/core.d.ts`, exported as `liltloom/core`. Its module graph contains the portable vocabulary, Zod schemas, eligibility checks, feature extraction, deterministic rule derivation, and Style Context compiler. The DSH `defineDomain` declaration now lives in `src/dsh-domain.ts` and is absent from the core entry point. A package test imports the core surface directly and exercises its principal exports.
 
 ## Compatibility-specific evidence
 

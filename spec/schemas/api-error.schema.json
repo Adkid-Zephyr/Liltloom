@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dsh-liltloom.invalid/schemas/api-error.schema.json",
+  "$id": "https://liltloom.invalid/schemas/api-error.schema.json",
   "title": "Liltloom API Error",
   "type": "object",
   "additionalProperties": false,

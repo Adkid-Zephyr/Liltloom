@@ -4,7 +4,7 @@ Status: MVP v1 implemented
 
 ## Capability boundary
 
-The MVP ships as one out-of-tree DSH bundle and provides one stable Cordis service at `ctx.styleMemory`. The native client UI, slash command, and optional model tool are consumers of this service; they do not own separate retrieval logic.
+The product exposes a host-neutral core at `liltloom/core`. The first maintained adapter ships as one out-of-tree DSH bundle and provides one stable Cordis service at `ctx.styleMemory`. The native client UI, slash command, and optional model tool are consumers of this adapter service; they do not own separate retrieval logic.
 
 Representative public methods:
 

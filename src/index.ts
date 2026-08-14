@@ -1,4 +1,4 @@
-/** Quiet, user-owned writing-style memory for DeepSeek Harness. */
+/** DeepSeek Harness adapter for the portable Liltloom style-memory core. */
 
 export { default } from './service.js'
 export { Config } from './service.js'

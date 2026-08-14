@@ -2,7 +2,7 @@
 # dormant in compositions that do not provide durable sidecar storage.
 - insert:
     - id: liltloom
-      name: dsh-liltloom
+      name: liltloom
       config:
         observationEnabled: true
         invocationMode: explicit

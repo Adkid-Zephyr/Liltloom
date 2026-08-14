@@ -2,11 +2,11 @@
 
 Status: Accepted on 2026-08-14 (Gate 0)
 
-Product name: `Liltloom` (`语织`); package: `dsh-liltloom`
+Product name and package: `Liltloom` (`语织`), `liltloom`
 
 ## Product statement
 
-Liltloom is a quiet, user-owned personal context layer for DeepSeek Harness. Its name joins *lilt* (voice, rhythm, cadence) with *loom* (weaving over time). It continuously compiles eligible user-authored conversation into structured writing-style memory, stays out of the conversation by default, and exposes a callable interface that retrieves task-relevant style context when the user or an authorized Agent wants writing to resemble the user's own style.
+Liltloom is a quiet, portable, user-owned personal context layer for AI writing tools. Its name joins *lilt* (voice, rhythm, cadence) with *loom* (weaving over time). It continuously compiles eligible user-authored text into structured writing-style memory, stays out of the conversation by default, and exposes a callable interface that retrieves task-relevant style context when the user or an authorized Agent wants writing to resemble the user's own style. DeepSeek Harness is the first maintained host adapter, not part of Liltloom's canonical product identity.
 
 The first product is writing-style memory. Advanced style recording is an explicit resource-bearing upgrade. A minimal self-authored personal description reserves the path toward a broader, compounding personal context system inspired by the LLM Wiki pattern.
 
@@ -36,7 +36,7 @@ The default layer observes eligible top-level human messages, extracts lightweig
 
 ### Layer 2 — Style Context API
 
-A typed service queries, compiles, and activates task-relevant style context. DSH-native consumers, an optional model-facing tool, UI actions, and a future MCP adapter reuse the same service.
+A typed, host-neutral core validates, derives, and compiles task-relevant style context. Host adapters bind observation, persistence, authorization, model context, and UI to their runtime. The first adapter provides DSH-native services, an optional model-facing tool, UI actions, and replay-safe activation.
 
 ### Layer 3 — Deep Style
 
@@ -65,7 +65,7 @@ Quiet is an observable product contract, not secrecy from the user.
 5. **Cheap models propose; deterministic code commits.** Model output cannot directly overwrite authoritative state.
 6. **Local-first and minimal by default.** Additional remote processing and source retention are opt-in or explicitly disclosed.
 7. **Separate writing style from identity.** The plugin models expression preferences, not a hidden psychological diagnosis.
-8. **DSH-native and replay-safe.** Extensions use documented plugin, event, storage, and context seams rather than patching the agent loop.
+8. **Adapter-native and replay-safe.** Every adapter uses documented host seams rather than patching its agent loop. The DSH adapter uses DSH-native event, storage, tool, and context mechanisms.
 
 ## Primary user journeys
 
@@ -120,3 +120,4 @@ The MVP succeeds when:
 - [`DEC-002`](decisions/DEC-002-hybrid-analysis-and-resource-policy.md) — disclosed hybrid analysis with a multi-dimensional resource policy.
 - [`DEC-003`](decisions/DEC-003-deep-style-excerpt-retention.md) — automatic bounded Deep Style excerpts with review and expiry.
 - [`DEC-006`](decisions/DEC-006-liltloom-brand-and-interface.md) — Liltloom naming and a quiet, progressively disclosed native interface.
+- [`DEC-007`](decisions/DEC-007-portable-core-first-adapter.md) — portable product core with DSH as the first maintained host adapter.

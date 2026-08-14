@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dsh-liltloom.invalid/schemas/activate-style-request.schema.json",
+  "$id": "https://liltloom.invalid/schemas/activate-style-request.schema.json",
   "title": "Activate Style Request",
   "type": "object",
   "additionalProperties": false,

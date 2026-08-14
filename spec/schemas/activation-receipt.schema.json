@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dsh-liltloom.invalid/schemas/activation-receipt.schema.json",
+  "$id": "https://liltloom.invalid/schemas/activation-receipt.schema.json",
   "title": "Activation Set",
   "type": "object",
   "additionalProperties": false,

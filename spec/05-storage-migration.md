@@ -2,9 +2,9 @@
 
 Status: MVP v1 implemented
 
-## Canonical storage
+## DSH adapter storage
 
-The plugin uses DSH `storage-domain` as its only persistence seam. The domain name/version is `style_memory` v1. JSON is the first Web-profile backend; physical backend layout is not a public contract.
+The DSH adapter uses DSH `storage-domain` as its persistence seam. The domain name/version is `style_memory` v1. JSON is the first Web-profile backend; physical backend layout is not a public contract. Other host adapters may use different physical storage while preserving the portable contract below.
 
 Implemented logical tables:
 
@@ -29,7 +29,7 @@ Portable export is the validated JSON shape in `spec/schemas/liltloom-export.sch
 ```ts
 interface PortableStyleMemory {
   schemaVersion: 1
-  product: 'dsh-liltloom' | 'dsh-style-memory'
+  product: 'liltloom' | 'dsh-liltloom' | 'dsh-style-memory'
   exportedAt: string
   preferences: PreferenceAtom[]
   exemplars: StyleExemplar[]
@@ -39,7 +39,7 @@ interface PortableStyleMemory {
 
 It excludes aggregates, session IDs, activations, watermarks, profile internals, resource ledger, and backend-specific fields. Expired excerpts are not useful to compilation; startup prunes them and future migrations must preserve that retention invariant.
 
-New exports use `product: 'dsh-liltloom'`. Import also accepts the legacy `dsh-style-memory` value so the product rename cannot strand a user's backup. The durable domain deliberately remains `style_memory` v1; upgrading the package therefore reuses existing local data instead of copying it.
+New exports use `product: 'liltloom'`. Import also accepts the legacy `dsh-liltloom` and `dsh-style-memory` values so adapter-specific naming cannot strand a user's backup. The DSH durable domain deliberately remains `style_memory` v1; upgrading the package therefore reuses existing local data instead of copying it.
 
 Import validates the complete document before any mutation. `merge` upserts by stable ID. `replace` deletes existing portable classes and then imports the validated document. An unsupported schema version fails before mutation.
 

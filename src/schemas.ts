@@ -1,10 +1,9 @@
-/** Zod schemas and the single durable DSH storage-domain declaration. */
+/** Host-neutral schemas for Liltloom's portable data and context protocol. */
 
 import { z } from 'zod'
-import { defineDomain, domainTable } from '@deepseek-ai/dsh-storage-domain'
 import type {
-  ActivationSet,
   EvidenceAggregate,
+  ActivationSet,
   PreferenceAtom,
   ProcessingWatermark,
   ProfileMeta,
@@ -160,22 +159,6 @@ export const resourceLedgerSchema: z.ZodType<ResourceLedger> = z.object({
   priceStatus: z.enum(['known', 'free', 'unknown', 'not-applicable']),
 })
 
-export const styleMemoryDomainSpec = defineDomain({
-  name: 'style_memory',
-  version: 1,
-  tables: {
-    preferences: domainTable<string, PreferenceAtom>(preferenceAtomSchema),
-    aggregates: domainTable<string, EvidenceAggregate>(aggregateSchema),
-    exemplars: domainTable<string, StyleExemplar>(exemplarSchema),
-    settings: domainTable<string, StyleMemorySettings>(settingsSchema),
-    activations: domainTable<string, ActivationSet>(activationSchema),
-    self_description: domainTable<string, SelfDescription>(selfDescriptionSchema),
-    watermarks: domainTable<string, ProcessingWatermark>(watermarkSchema),
-    profile: domainTable<string, ProfileMeta>(profileMetaSchema),
-    resources: domainTable<string, ResourceLedger>(resourceLedgerSchema),
-  },
-})
-
 export const analysisProposalSchema = z.object({
   observations: z.array(z.object({
     category: categorySchema,
@@ -187,7 +170,7 @@ export const analysisProposalSchema = z.object({
 
 export const portableStyleMemorySchema: z.ZodType<PortableStyleMemory> = z.object({
   schemaVersion: z.literal(1),
-  product: z.enum(['dsh-liltloom', 'dsh-style-memory']),
+  product: z.enum(['liltloom', 'dsh-liltloom', 'dsh-style-memory']),
   exportedAt: z.string().min(1),
   preferences: z.array(preferenceAtomSchema).max(100000),
   exemplars: z.array(exemplarSchema).max(200),

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dsh-liltloom.invalid/schemas/settings.schema.json",
+  "$id": "https://liltloom.invalid/schemas/settings.schema.json",
   "title": "Persisted Liltloom Settings",
   "type": "object",
   "additionalProperties": false,

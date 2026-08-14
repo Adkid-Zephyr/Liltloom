@@ -43,6 +43,7 @@ Every externally observable requirement has a stable identifier:
 | `UX` | User experience |
 | `TST` | Verification |
 | `DSH` | DSH runtime integration and compatibility |
+| `ADP` | Portable core and host adapter conformance |
 
 Identifiers are never reused after removal. Removed requirements remain in the traceability table with status `retired`.
 
@@ -74,7 +75,7 @@ Identifiers are never reused after removal. Removed requirements remain in the t
 
 ### Gate 4 — Implementation authorized
 
-- The minimal package boundary and DSH compatibility target are selected.
+- The portable core boundary, maintained adapters, and compatibility targets are selected.
 - Tests are written from the accepted contracts.
 - Code changes reference requirement IDs.
 

@@ -56,7 +56,7 @@ export async function analyzeStyle(
   const framed = samples.map((sample, index) => `<sample index="${index + 1}">\n${sample}\n</sample>`).join('\n\n')
   const message = createUserMessage({
     content: [{ type: 'text', text: framed }],
-    source: { kind: 'plugin', plugin: 'dsh-liltloom' },
+    source: { kind: 'plugin', plugin: 'liltloom' },
   })
   const assembler = new BlockAssembler()
   for await (const chunk of ctx.llm.stream({

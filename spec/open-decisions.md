@@ -12,6 +12,7 @@ These questions are material and MUST be answered before the affected behavior b
 - [`DEC-004`](decisions/DEC-004-deep-style-retention-envelope.md) — 90-day, 200-record balanced Deep Style envelope.
 - [`DEC-005`](decisions/DEC-005-profile-topology.md) — global base profile plus workspace overlays.
 - [`DEC-006`](decisions/DEC-006-liltloom-brand-and-interface.md) — Liltloom is the accepted product name and its native UI stays quiet and progressively disclosed.
+- [`DEC-007`](decisions/DEC-007-portable-core-first-adapter.md) — Liltloom is host-portable; DSH is the first maintained adapter.
 
 ## No Gate 1 blockers
 
@@ -19,9 +20,9 @@ No unresolved product decision currently blocks MVP implementation. Newly discov
 
 ## Provisional non-blocking choices
 
-- Repository and package name: `dsh-liltloom`.
-- MVP surface target: DSH Web profile first.
-- Canonical persistence: DSH storage-domain, JSON backend initially.
+- Repository and package name: `liltloom`.
+- Product boundary: portable core plus host adapters; DSH Web is the first maintained adapter.
+- Canonical portable contract: versioned Liltloom JSON and Style Context Packet. The DSH adapter binds these to `storage-domain`, using the JSON backend initially.
 - MVP package layout: one bundle with an internal service boundary; split packages later if justified.
 
 These may be renamed or reorganized without changing product behavior.

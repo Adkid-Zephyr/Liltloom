@@ -1,28 +1,36 @@
 {
-  "name": "dsh-liltloom",
-  "version": "0.1.0",
-  "description": "Liltloom — quiet, user-owned writing-style memory for DeepSeek Harness",
+  "name": "liltloom",
+  "version": "0.2.0",
+  "description": "Portable, user-owned writing-style memory for AI writing tools",
   "keywords": [
-    "deepseek-harness",
-    "dsh",
-    "dsh-plugin",
     "writing-style",
     "personal-memory",
-    "ai-agent"
+    "ai-plugin",
+    "ai-agent",
+    "deepseek-harness",
+    "dsh-plugin"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Adkid-Zephyr/dsh-liltloom.git"
+    "url": "git+https://github.com/Adkid-Zephyr/liltloom.git"
   },
-  "homepage": "https://github.com/Adkid-Zephyr/dsh-liltloom#readme",
+  "homepage": "https://github.com/Adkid-Zephyr/liltloom#readme",
   "bugs": {
-    "url": "https://github.com/Adkid-Zephyr/dsh-liltloom/issues"
+    "url": "https://github.com/Adkid-Zephyr/liltloom/issues"
   },
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "exports": {
     ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./core": {
+      "types": "./lib/core.d.ts",
+      "default": "./lib/core.js"
+    },
+    "./adapters/dsh": {
       "types": "./lib/index.d.ts",
       "default": "./lib/index.js"
     },

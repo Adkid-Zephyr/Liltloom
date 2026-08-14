@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dsh-liltloom.invalid/schemas/self-description.schema.json",
+  "$id": "https://liltloom.invalid/schemas/self-description.schema.json",
   "title": "Self Description",
   "type": "object",
   "additionalProperties": false,

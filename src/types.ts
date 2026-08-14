@@ -186,8 +186,8 @@ export interface StyleMemoryStatus {
 
 export interface PortableStyleMemory {
   schemaVersion: 1
-  /** The legacy value remains importable so the product rename never strands user data. */
-  product: 'dsh-liltloom' | 'dsh-style-memory'
+  /** Legacy adapter-specific values remain importable so renames never strand user data. */
+  product: 'liltloom' | 'dsh-liltloom' | 'dsh-style-memory'
   exportedAt: string
   preferences: PreferenceAtom[]
   exemplars: StyleExemplar[]

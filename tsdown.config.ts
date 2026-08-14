@@ -1,6 +1,6 @@
 import { defineConfig } from 'tsdown'
 
-const pluginId = 'dsh-liltloom'
+const pluginId = 'liltloom'
 const externals = [
   'react',
   'react/jsx-runtime',

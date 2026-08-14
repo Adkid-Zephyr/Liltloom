@@ -4,7 +4,7 @@ Status: Accepted on 2026-08-14
 
 ## Decision
 
-The product name is **Liltloom**, with the optional Chinese name **语织** and package name `dsh-liltloom`. *Lilt* represents an individual's cadence and expression; *loom* represents gradual compilation from many small signals.
+The product name is **Liltloom**, with the optional Chinese name **语织** and package name `liltloom`. *Lilt* represents an individual's cadence and expression; *loom* represents gradual compilation from many small signals.
 
 The native interface follows the same product idea without decorative texture or permanent chrome:
 
@@ -17,7 +17,7 @@ The native interface follows the same product idea without decorative texture or
 
 ## Compatibility
 
-The package and plugin IDs change to `dsh-liltloom` and `liltloom`. The durable `style_memory` v1 domain, the public `ctx.styleMemory` service, and existing TypeScript domain names stay stable. New portable exports identify `dsh-liltloom`; imports continue accepting `dsh-style-memory` exports.
+The package and canonical product ID are `liltloom`. The DSH adapter also registers with plugin ID `liltloom`. The durable `style_memory` v1 domain, the public DSH `ctx.styleMemory` service, and existing TypeScript domain names stay stable. New portable exports identify `liltloom`; imports continue accepting `dsh-liltloom` and `dsh-style-memory` exports.
 
 ## Consequences
 

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dsh-liltloom.invalid/schemas/style-exemplar.schema.json",
+  "$id": "https://liltloom.invalid/schemas/style-exemplar.schema.json",
   "title": "Style Exemplar",
   "type": "object",
   "additionalProperties": false,

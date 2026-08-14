@@ -1,18 +1,29 @@
 # Liltloom / 语织
 
-[![CI](https://github.com/Adkid-Zephyr/dsh-liltloom/actions/workflows/ci.yml/badge.svg)](https://github.com/Adkid-Zephyr/dsh-liltloom/actions/workflows/ci.yml)
+[![CI](https://github.com/Adkid-Zephyr/liltloom/actions/workflows/ci.yml/badge.svg)](https://github.com/Adkid-Zephyr/liltloom/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![DeepSeek Harness](https://img.shields.io/badge/DeepSeek%20Harness-plugin-5B6DF6)](https://github.com/deepseek-ai/deepseek-harness)
+[![DeepSeek Harness](https://img.shields.io/badge/adapter-DeepSeek%20Harness-5B6DF6)](https://github.com/deepseek-ai/deepseek-harness)
 
-`dsh-liltloom` 是 DeepSeek Harness 的个人写作风格记忆插件。它在后台从合格的用户原生表达中提炼可审阅的风格规则；只有在用户授权的调用路径中，才把一个有 token 上限的风格上下文交给 Agent。
+Liltloom 是一个可移植、由用户拥有的个人写作风格记忆层。它不绑定某个模型或 Harness：核心负责从合格的用户原生表达中提炼可审阅的规则，并通过稳定的 Style Context Packet 接口按需交给 AI 写作工具。本仓库首先提供 DeepSeek Harness adapter，也是目前适配最完整的宿主。
 
-Liltloom is a quiet, user-owned writing-style memory plugin for DeepSeek Harness. It learns from eligible user-authored conversation, stores structured and reviewable preferences, and only applies a bounded style context after explicit authorization.
+Liltloom is a portable, user-owned writing-style memory layer for AI writing tools. Its core learns structured, reviewable preferences from eligible user-authored text and exposes them through a bounded Style Context Packet. This repository ships DeepSeek Harness as the first maintained—and currently best-supported—host adapter.
 
 > Lilt 是语调与节奏，loom 是织机。Liltloom 悄悄学会你的表达，需要时再织进回答。
 
 > Vision：自动学习、静默保存、显式取用；需要模仿用户写作风格时，既能由人激活，也能通过受控接口调用；应用范围由用户选择。原文片段和小模型分析是两个独立的高阶开关。
 
-这是一个针对 DeepSeek Harness `0.1.0-rc.5` 生命周期设计、并以公开 `0.1.0-rc.6` 包完成构建测试的 Web-profile MVP。
+## 产品与适配器
+
+Liltloom 的边界分为两层：
+
+| 层 | 责任 | 宿主依赖 |
+|---|---|---|
+| `liltloom/core` | 数据模型、原生文本资格检查、特征提取、确定性规则生成、Style Context 编译、可移植 JSON schema | 无 DSH 运行时依赖 |
+| `liltloom/adapters/dsh` | 监听 DSH 会话事件、绑定 `storage-domain`、注入动态上下文、注册命令/tool/RPC 和原生设置界面 | DeepSeek Harness |
+
+“可移植”描述的是产品协议与核心边界，不是假装所有宿主都已完成。`0.2.0` 首发只有 DSH adapter 达到可安装、可测试状态；后续宿主应复用同一份 portable export 与 Style Context Packet，而不是各自发明不兼容的画像格式。
+
+当前 DSH adapter 针对 `0.1.0-rc.5` 生命周期设计，并以公开 `0.1.0-rc.6` 包完成构建测试。
 
 ## 默认行为
 
@@ -35,15 +46,15 @@ Liltloom is a quiet, user-owned writing-style memory plugin for DeepSeek Harness
 
 用户可以用命令直接修改规则，也可以 `export` JSON、离线编辑后再 `import`。不要把底层 `style_memory.json` 当作迁移格式；它包含运行时状态，且后端未来可以从 JSON 换成 SQLite。
 
-## 安装
+## 通过 DeepSeek Harness 使用
 
 要求 Node `^22.19.0 || >=24`、pnpm，以及提供 `storage-domain` 的 DSH Web profile。
 
 manifest 把 DSH host API 标成 optional peers，避免 profile 的 pnpm 把宿主内建包误报为普通缺失依赖；这不代表运行时可选。插件的 Cordis 注入仍会等待 `storageDomain`、`sessions` 和 `systemPrompt`，因此未提供这些服务的 composition 不会激活。
 
 ```sh
-git clone https://github.com/Adkid-Zephyr/dsh-liltloom.git
-cd dsh-liltloom
+git clone https://github.com/Adkid-Zephyr/liltloom.git
+cd liltloom
 pnpm install
 pnpm run check
 dsh plugin --profile web add "$PWD"
@@ -54,22 +65,22 @@ dsh --profile web
 从 DeepSeek Harness 源码 checkout 运行时，把最后三条的 `dsh` 换成仓库中的 `pnpm dsh`：
 
 ```sh
-pnpm dsh plugin --profile web add /absolute/path/to/dsh-liltloom
+pnpm dsh plugin --profile web add /absolute/path/to/liltloom
 pnpm dsh --profile web --dump-config
 pnpm dsh --profile web
 ```
 
-也可以从 [GitHub Releases](https://github.com/Adkid-Zephyr/dsh-liltloom/releases) 下载已经构建好的 tarball，或从源码自行生成：
+也可以从 [GitHub Releases](https://github.com/Adkid-Zephyr/liltloom/releases) 下载已经构建好的 tarball，或从源码自行生成：
 
 ```sh
 pnpm pack
-dsh plugin --profile web add /absolute/path/to/dsh-liltloom-0.1.0.tgz
+dsh plugin --profile web add /absolute/path/to/liltloom-0.2.0.tgz
 ```
 
 卸载插件不会自动删除它的个人数据。需要清除时，先运行 `/liltloom clear confirm`，再执行：
 
 ```sh
-dsh plugin --profile web remove dsh-liltloom
+dsh plugin --profile web remove liltloom
 ```
 
 ## 日常使用
@@ -134,7 +145,7 @@ MVP 的存储信封是：每段最多 1,200 字、默认 90 天、最多 200 条
 
 ```yaml
 - id: liltloom
-  name: dsh-liltloom
+  name: liltloom
   config:
     observationEnabled: true
     invocationMode: explicit
@@ -175,11 +186,12 @@ MVP 只保存一段用户亲自填写的自我描述，不从普通对话推断�
 
 ## 给 Agent / 其他插件调用
 
-有三层接口：
+有四层接口：
 
-1. `ctx.styleMemory` 服务：供受信任的 DSH 插件使用，提供 `query()`、`compile()`、`activate()`、CRUD、export/import 等方法。
-2. `style_context` model tool：默认不注册，因为 tool schema 本身会改变普通模型请求；用户运行 `/liltloom tool on` 后才出现。
-3. 原生 Web 客户端通过 DSH Connection 的 `/liltloom-rpc` 结构化通道调用同一服务。该通道只接受 loopback 来源，不是面向远程应用的公开 HTTP API。
+1. `liltloom/core`：供其他宿主 adapter 复用的 TypeScript 核心，提供类型、schema、资格检查、特征提取和上下文编译。
+2. `ctx.styleMemory` 服务：供受信任的 DSH 插件使用，提供 `query()`、`compile()`、`activate()`、CRUD、export/import 等方法。
+3. `style_context` model tool：默认不注册，因为 tool schema 本身会改变普通模型请求；用户运行 `/liltloom tool on` 后才出现。
+4. 原生 Web 客户端通过 DSH Connection 的 `/liltloom-rpc` 结构化通道调用同一服务。该通道只接受 loopback 来源，不是面向远程应用的公开 HTTP API。
 
 在 `explicit` 模式下，模型 tool 只有在当前用户消息明确要求“按我的风格写”时才能成功；`configured-auto` 仍受 workspace allowlist 约束。两条接口最终使用同一套编译器和 token 上限。
 
@@ -195,6 +207,7 @@ MVP 只保存一段用户亲自填写的自我描述，不从普通对话推断�
 - [Acceptance specification](spec/06-acceptance.md)
 - [Traceability matrix](spec/07-traceability.md)
 - [DSH runtime integration](spec/08-dsh-integration.md)
+- [Portable core and adapter contract](spec/09-portable-core-and-adapters.md)
 - [Executable schemas](spec/schemas/README.md)
 - [Decision records](spec/decisions)
 - [Gate status](spec/status.md)
@@ -210,7 +223,7 @@ pnpm run pack:check
 
 ## MVP 已知边界
 
-- 首版只正式支持有持久存储的 DSH Web profile；headless 需自行组合同等 storage 服务。
+- 首版只有 DSH adapter 达到正式支持状态，且要求有持久存储的 DSH Web profile；其他宿主 adapter 尚未发布。
 - 原生界面目前以中文为主；尚无独立 dashboard、移动端或跨设备同步。
 - 没有 embeddings、向量库、微调、跨设备同步、事实记忆或自动人格推断。
 - token 数是保守估算，不是特定 provider tokenizer 的精确计数。
@@ -221,4 +234,4 @@ License: MIT
 
 ## Community
 
-Issues and pull requests are welcome in this repository. For the wider DSH ecosystem, add the `dsh-plugin` topic to compatible projects and share releases through the official DeepSeek Harness Discussions and community channels.
+Issues and pull requests are welcome. Liltloom welcomes new host adapters as long as they preserve explicit authorization, portable exports, bounded context, and honest privacy semantics. The DSH adapter remains discoverable through the `dsh-plugin` topic and the official DeepSeek Harness community channels.
