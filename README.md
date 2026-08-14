@@ -1,6 +1,6 @@
 # Liltloom / 语织
 
-[![CI](https://github.com/Adkid-Zephyr/liltloom/actions/workflows/ci.yml/badge.svg)](https://github.com/Adkid-Zephyr/liltloom/actions/workflows/ci.yml)
+[![CI](https://github.com/Adkid-Zephyr/Liltloom/actions/workflows/ci.yml/badge.svg)](https://github.com/Adkid-Zephyr/Liltloom/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![DeepSeek Harness](https://img.shields.io/badge/adapter-DeepSeek%20Harness-5B6DF6)](https://github.com/deepseek-ai/deepseek-harness)
 
@@ -53,7 +53,7 @@ Liltloom 的边界分为两层：
 manifest 把 DSH host API 标成 optional peers，避免 profile 的 pnpm 把宿主内建包误报为普通缺失依赖；这不代表运行时可选。插件的 Cordis 注入仍会等待 `storageDomain`、`sessions` 和 `systemPrompt`，因此未提供这些服务的 composition 不会激活。
 
 ```sh
-git clone https://github.com/Adkid-Zephyr/liltloom.git
+git clone https://github.com/Adkid-Zephyr/Liltloom.git
 cd liltloom
 pnpm install
 pnpm run check
@@ -70,7 +70,7 @@ pnpm dsh --profile web --dump-config
 pnpm dsh --profile web
 ```
 
-也可以从 [GitHub Releases](https://github.com/Adkid-Zephyr/liltloom/releases) 下载已经构建好的 tarball，或从源码自行生成：
+也可以从 [GitHub Releases](https://github.com/Adkid-Zephyr/Liltloom/releases) 下载已经构建好的 tarball，或从源码自行生成：
 
 ```sh
 pnpm pack

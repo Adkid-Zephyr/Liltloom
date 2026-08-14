@@ -12,11 +12,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Adkid-Zephyr/liltloom.git"
+    "url": "git+https://github.com/Adkid-Zephyr/Liltloom.git"
   },
-  "homepage": "https://github.com/Adkid-Zephyr/liltloom#readme",
+  "homepage": "https://github.com/Adkid-Zephyr/Liltloom#readme",
   "bugs": {
-    "url": "https://github.com/Adkid-Zephyr/liltloom/issues"
+    "url": "https://github.com/Adkid-Zephyr/Liltloom/issues"
   },
   "type": "module",
   "main": "lib/index.js",
