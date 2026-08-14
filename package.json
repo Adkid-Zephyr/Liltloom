@@ -1,12 +1,16 @@
 {
   "name": "liltloom",
   "version": "0.2.0",
-  "description": "Portable, user-owned writing-style memory for AI writing tools",
+  "description": "语织：中文优先、用户可控的 AI 写作风格记忆层 / Chinese-first style memory for AI",
   "keywords": [
     "writing-style",
     "personal-memory",
     "ai-plugin",
     "ai-agent",
+    "ai-writing",
+    "chinese-writing",
+    "chinese-language",
+    "local-first",
     "deepseek-harness",
     "dsh-plugin"
   ],

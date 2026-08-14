@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" role="img" aria-labelledby="title desc">
+  <title id="title">Liltloom mark</title>
+  <desc id="desc">Two interwoven lines representing voice and rhythm being woven together.</desc>
+  <g fill="none" stroke="#5168D8" stroke-width="2" stroke-linecap="round">
+    <path d="M5 10c7 0 7 16 13 16s6-16 13-16"/>
+    <path d="M5 26c7 0 7-16 13-16s6 16 13 16"/>
+  </g>
+</svg>
