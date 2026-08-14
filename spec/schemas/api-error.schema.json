@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsh-liltloom.invalid/schemas/api-error.schema.json",
+  "title": "Liltloom API Error",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "message", "retryable"],
+  "properties": {
+    "code": {
+      "enum": [
+        "STYLE_DISABLED",
+        "STYLE_PROFILE_EMPTY",
+        "STYLE_NOT_EXPLICITLY_REQUESTED",
+        "DEEP_STYLE_DISABLED",
+        "SELF_CONTEXT_NOT_AUTHORIZED",
+        "PREFERENCE_NOT_FOUND",
+        "EXEMPLAR_NOT_FOUND",
+        "PREFERENCE_INACTIVE",
+        "STALE_PROFILE_REVISION",
+        "TOKEN_BUDGET_INVALID",
+        "SESSION_NOT_FOUND",
+        "ACTIVATION_NOT_FOUND",
+        "RESOURCE_LIMIT_REACHED",
+        "ANALYSIS_PROVIDER_UNAVAILABLE"
+      ]
+    },
+    "message": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "retryable": { "type": "boolean" },
+    "details": { "type": "object", "additionalProperties": true }
+  }
+}

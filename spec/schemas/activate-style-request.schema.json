@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsh-liltloom.invalid/schemas/activate-style-request.schema.json",
+  "title": "Activate Style Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sessionId"],
+  "properties": {
+    "sessionId": { "type": "string", "minLength": 1 },
+    "request": { "$ref": "compile-style-request.schema.json" },
+    "scope": { "enum": ["next-response", "session"], "default": "next-response" }
+  }
+}

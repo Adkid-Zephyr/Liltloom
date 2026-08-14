@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsh-liltloom.invalid/schemas/settings.schema.json",
+  "title": "Persisted Liltloom Settings",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "observationState", "invocationMode", "modelToolEnabled", "autoWorkspaceGlobs", "deepStyleEnabled", "deepStyleConsentVersion", "deepStyleRetentionDays", "deepStyleMaxExcerptChars", "deepStyleMaxRecords", "deepStyleMaxTotalChars", "analysisEnabled", "analysisConsentVersion", "allowSelfContextInCompilation", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "observationState": { "enum": ["off", "learning", "paused"] },
+    "invocationMode": { "enum": ["disabled", "explicit", "configured-auto"] },
+    "modelToolEnabled": { "type": "boolean" },
+    "autoWorkspaceGlobs": { "type": "array", "maxItems": 100, "items": { "type": "string", "minLength": 1 } },
+    "deepStyleEnabled": { "type": "boolean" },
+    "deepStyleConsentVersion": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+    "deepStyleRetentionDays": { "type": "integer", "minimum": 1, "maximum": 3650 },
+    "deepStyleMaxExcerptChars": { "type": "integer", "minimum": 100, "maximum": 1200 },
+    "deepStyleMaxRecords": { "type": "integer", "minimum": 1, "maximum": 200 },
+    "deepStyleMaxTotalChars": { "type": "integer", "minimum": 1000, "maximum": 240000 },
+    "analysisEnabled": { "type": "boolean" },
+    "analysisConsentVersion": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+    "allowSelfContextInCompilation": { "type": "boolean" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}

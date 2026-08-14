@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsh-liltloom.invalid/schemas/compile-style-request.schema.json",
+  "title": "Compile Style Request",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "purpose": { "enum": ["imitate", "adapt", "review"] },
+    "register": { "enum": ["default", "technical", "professional", "social", "longform"] },
+    "workspace": { "type": "string", "minLength": 1 },
+    "depth": { "enum": ["basic", "deep"] },
+    "budgetTokens": { "type": "integer", "minimum": 1, "maximum": 100000 },
+    "includeSelfContext": { "type": "boolean" },
+    "selectedPreferenceIds": { "type": "array", "uniqueItems": true, "maxItems": 200, "items": { "type": "string", "minLength": 1 } }
+  }
+}

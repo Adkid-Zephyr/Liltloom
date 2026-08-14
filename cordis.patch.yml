@@ -1,0 +1,22 @@
+# Web-profile MVP. The plugin waits for storage-domain and therefore stays
+# dormant in compositions that do not provide durable sidecar storage.
+- insert:
+    - id: liltloom
+      name: dsh-liltloom
+      config:
+        observationEnabled: true
+        invocationMode: explicit
+        modelToolEnabled: false
+        deepStyleEnabled: false
+        analysisEnabled: false
+        analysisMaxCallsPerDay: 20
+        analysisMaxInputTokensPerDay: 50000
+        analysisMaxOutputTokensPerDay: 6000
+        analysisMaxOutputTokensPerCall: 600
+        analysisBatchMessages: 6
+        analysisMaxBatchChars: 8000
+        analysisFlushIntervalMs: 30000
+        analysisTimeoutMs: 60000
+        analysisMaxRetries: 1
+        analysisRetryBackoffMs: 60000
+        contextMaxTokens: 1200

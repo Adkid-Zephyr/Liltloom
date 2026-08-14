@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsh-liltloom.invalid/schemas/style-query.schema.json",
+  "title": "Style Query",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "text": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "category": { "enum": ["tone", "verbosity", "structure", "sentence-rhythm", "vocabulary", "formatting", "avoidance", "explicit-rule"] },
+    "register": { "enum": ["default", "technical", "professional", "social", "longform"] },
+    "workspace": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["active", "suppressed", "review"] },
+    "locked": { "type": "boolean" },
+    "limit": { "type": "integer", "minimum": 1, "maximum": 1000 }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsh-liltloom.invalid/schemas/self-description.schema.json",
+  "title": "Self Description",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["revision", "text", "source", "createdAt", "updatedAt"],
+  "properties": {
+    "revision": { "type": "integer", "minimum": 1 },
+    "text": { "type": "string", "minLength": 1, "maxLength": 50000 },
+    "source": { "const": "user-authored" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}

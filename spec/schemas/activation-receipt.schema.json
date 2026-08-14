@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsh-liltloom.invalid/schemas/activation-receipt.schema.json",
+  "title": "Activation Set",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "sessionId", "packet", "scope", "authorization", "createdAt", "status"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "sessionId": { "type": "string", "minLength": 1 },
+    "packet": { "$ref": "style-context-packet.schema.json" },
+    "scope": { "enum": ["next-response", "session"] },
+    "authorization": { "enum": ["explicit-request", "user-action", "configured-auto-rule"] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["active", "consumed", "revoked"] }
+  }
+}

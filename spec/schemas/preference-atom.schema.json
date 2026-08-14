@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsh-liltloom.invalid/schemas/preference-atom.schema.json",
+  "title": "Preference Atom",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "revision", "profileScope", "featureKey", "category", "register", "statement", "sourceClass", "confidence", "evidenceCount", "status", "locked", "firstSeenAt", "lastSeenAt"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "profileScope": { "$ref": "#/$defs/profileScope" },
+    "featureKey": { "type": "string", "minLength": 1 },
+    "category": { "enum": ["tone", "verbosity", "structure", "sentence-rhythm", "vocabulary", "formatting", "avoidance", "explicit-rule"] },
+    "register": { "enum": ["default", "technical", "professional", "social", "longform"] },
+    "statement": { "type": "string", "minLength": 1, "maxLength": 1000 },
+    "sourceClass": { "enum": ["user-explicit", "user-revision", "strong-observation", "weak-observation"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "evidenceCount": { "type": "integer", "minimum": 1 },
+    "status": { "enum": ["active", "suppressed", "review"] },
+    "locked": { "type": "boolean" },
+    "firstSeenAt": { "type": "string", "format": "date-time" },
+    "lastSeenAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "profileScope": {
+      "oneOf": [
+        { "type": "object", "additionalProperties": false, "required": ["kind"], "properties": { "kind": { "const": "global" } } },
+        { "type": "object", "additionalProperties": false, "required": ["kind", "workspace"], "properties": { "kind": { "const": "workspace" }, "workspace": { "type": "string", "minLength": 1 } } }
+      ]
+    }
+  }
+}

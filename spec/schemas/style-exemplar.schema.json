@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsh-liltloom.invalid/schemas/style-exemplar.schema.json",
+  "title": "Style Exemplar",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "revision", "profileScope", "register", "text", "sourceKind", "sourceFingerprint", "classificationConfidence", "redactionCount", "quality", "status", "locked", "consentVersion", "createdAt", "expiresAt"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "revision": { "type": "integer", "minimum": 1 },
+    "profileScope": { "$ref": "#/$defs/profileScope" },
+    "register": { "enum": ["default", "technical", "professional", "social", "longform"] },
+    "text": { "type": "string", "minLength": 1, "maxLength": 1200 },
+    "sourceKind": { "enum": ["user-authored-message", "user-approved-import", "revision-after"] },
+    "sourceFingerprint": { "type": "string", "minLength": 16 },
+    "classificationConfidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "redactionCount": { "type": "integer", "minimum": 0 },
+    "quality": { "type": "number", "minimum": 0, "maximum": 1 },
+    "status": { "enum": ["active", "suppressed", "review"] },
+    "locked": { "type": "boolean" },
+    "consentVersion": { "type": "integer", "minimum": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "oneOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }] }
+  },
+  "$defs": {
+    "profileScope": {
+      "oneOf": [
+        { "type": "object", "additionalProperties": false, "required": ["kind"], "properties": { "kind": { "const": "global" } } },
+        { "type": "object", "additionalProperties": false, "required": ["kind", "workspace"], "properties": { "kind": { "const": "workspace" }, "workspace": { "type": "string", "minLength": 1 } } }
+      ]
+    }
+  }
+}

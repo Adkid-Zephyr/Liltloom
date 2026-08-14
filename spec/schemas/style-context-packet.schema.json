@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsh-liltloom.invalid/schemas/style-context-packet.schema.json",
+  "title": "Style Context Packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "profileRevision", "register", "purpose", "selectedPreferenceIds", "rules", "avoid", "confidence", "tokenBudget", "estimatedTokens", "renderedContext"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profileRevision": { "type": "integer", "minimum": 0 },
+    "register": { "enum": ["default", "technical", "professional", "social", "longform"] },
+    "purpose": { "enum": ["imitate", "adapt", "review"] },
+    "selectedPreferenceIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "rules": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 1000 } },
+    "avoid": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 1000 } },
+    "exemplars": { "type": "array", "maxItems": 3, "items": { "$ref": "style-exemplar.schema.json" } },
+    "selfContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceRevision", "traits", "communicationPreferences", "values", "derivedAt"],
+      "properties": {
+        "sourceRevision": { "type": "integer", "minimum": 1 },
+        "traits": { "type": "array", "maxItems": 4, "items": { "type": "string", "minLength": 1 } },
+        "communicationPreferences": { "type": "array", "maxItems": 4, "items": { "type": "string", "minLength": 1 } },
+        "values": { "type": "array", "maxItems": 4, "items": { "type": "string", "minLength": 1 } },
+        "derivedAt": { "type": "string", "format": "date-time" },
+        "modelRoute": { "type": "string", "minLength": 1 }
+      }
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "tokenBudget": { "type": "integer", "minimum": 1 },
+    "estimatedTokens": { "type": "integer", "minimum": 0 },
+    "renderedContext": { "type": "string" }
+  }
+}
