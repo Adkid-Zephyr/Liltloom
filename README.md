@@ -36,7 +36,7 @@ Liltloom 的边界分为两层：
 
 “静默”指不打断对话、不改变普通模型请求，并不表示偷偷收集：安装本身是用户授权，状态、数据、导出和删除入口始终可见。
 
-## 数据到底以什么形式存在
+## 数据存在形式
 
 | 形态 | 用途 | 是否长期保存 |
 |---|---|---|
@@ -45,6 +45,22 @@ Liltloom 的边界分为两层：
 | Style Context Packet | 给 Agent 模仿写作时使用的结构化规则和渲染文本 | canonical profile 中不保存 prompt；激活后按 DSH 机制进入可重放 runtime context |
 
 用户可以用命令直接修改规则，也可以 `export` JSON、离线编辑后再 `import`。不要把底层 `style_memory.json` 当作迁移格式；它包含运行时状态，且后端未来可以从 JSON 换成 SQLite。
+
+## 界面预览
+
+以下截图来自当前维护最完整的 DeepSeek Harness adapter。其他宿主可以复用同一份 Liltloom core 与数据协议，但界面不要求完全相同。
+
+| 静默学习与取用设置 | 可检查、编辑和锁定的表达规则 |
+|---|---|
+| ![Liltloom 学习概览](https://raw.githubusercontent.com/Adkid-Zephyr/Liltloom/main/assets/media/ui-overview.png) | ![Liltloom 规则管理](https://raw.githubusercontent.com/Adkid-Zephyr/Liltloom/main/assets/media/ui-rules.png) |
+
+| 使用前预览 Style Context Packet | 用户主动维护的个人上下文 |
+|---|---|
+| ![Liltloom 风格取用预览](https://raw.githubusercontent.com/Adkid-Zephyr/Liltloom/main/assets/media/ui-style-preview.png) | ![Liltloom 个人上下文](https://raw.githubusercontent.com/Adkid-Zephyr/Liltloom/main/assets/media/ui-personal-context.png) |
+
+| 可读 JSON 导出、导入与永久删除 |
+|---|
+| ![Liltloom 数据控制](https://raw.githubusercontent.com/Adkid-Zephyr/Liltloom/main/assets/media/ui-data-control.png) |
 
 ## 通过 DeepSeek Harness 使用
 
