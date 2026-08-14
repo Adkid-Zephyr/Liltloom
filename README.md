@@ -267,6 +267,6 @@ DeepSeek Harness is the first maintained and currently best-supported adapter—
 
 Issues and pull requests are welcome. New host adapters should preserve explicit authorization, portable exports, bounded context, and honest privacy semantics.
 
-[提交 Issue](https://github.com/Adkid-Zephyr/Liltloom/issues) · [查看 Releases](https://github.com/Adkid-Zephyr/Liltloom/releases) · [小红书发布素材](./assets/media/README.md)
+[提交 Issue](https://github.com/Adkid-Zephyr/Liltloom/issues) · [查看 Releases](https://github.com/Adkid-Zephyr/Liltloom/releases) · [产品界面截图](./assets/media/README.md)
 
 MIT License
